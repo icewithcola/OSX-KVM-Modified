@@ -6,5 +6,3 @@
 *.sha256sum
 *.smd
 *.sucatalog
-OVMF_VARS*.fd
-OpenCore-Catalina/EFI/OC/Resources/
