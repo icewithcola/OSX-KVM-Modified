@@ -15,6 +15,15 @@ sudo usermod -aG libvirt $(whoami)
 sudo usermod -aG input $(whoami)
 ```
 
+## Clone this repo and submodules
+```
+cd ~
+
+git clone --depth 1 --recursive https://github.com/icewithcola/OSX-KVM-Modified.git
+
+cd OSX-KVM-Modified
+```
+
 ## Get BaseSystem
 + Run `./fetch-macOS-v2.py` if got 403, try not use proxy.
 + Then `dmg2img -i BaseSystem.dmg BaseSystem.img`, and now you are safe to delete `BaseSystem.dmg`.
