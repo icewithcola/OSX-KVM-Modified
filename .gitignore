@@ -6,5 +6,5 @@
 *.sha256sum
 *.smd
 *.sucatalog
-OpenCore/EFI/OC/Resources/
-OpenCore/EFI/OC/Drivers/
+OpenCore/EFI/OC/Resources/*
+OpenCore/EFI/OC/Drivers/*
