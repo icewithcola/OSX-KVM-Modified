@@ -1,19 +1,12 @@
 # This is a simplified version of [kholia/OSX-KVM](https://github.com/kholia/OSX-KVM), with only base system on normal PC
 
+# [中文版本](https://github.com/icewithcola/OSX-KVM-Modified/blob/master/README_CN.md)
 # Insatall
 ## Requirements
 + `qemu-system-x68_64` full package
 + `dmg2img` ([AUR](https://aur.archlinux.org/packages/dmg2img),[dpkg](https://packages.debian.org/sid/dmg2img))
-
++ `virt-manager` (Optional)
 If you can run a x64 KVM vm with any OS with `virt-manager`, it means you have successfully installed qemu.
-
-## Use non-previleged kvm
-Add user to the `kvm` and `libvirt` groups (might be needed).
-```
-sudo usermod -aG kvm $(whoami)
-sudo usermod -aG libvirt $(whoami)
-sudo usermod -aG input $(whoami)
-```
 
 ## Clone this repo and submodules
 ```
@@ -22,6 +15,14 @@ cd ~
 git clone --depth 1 --recursive https://github.com/icewithcola/OSX-KVM-Modified.git
 
 cd OSX-KVM-Modified
+```
+
+## Use non-previleged kvm
+Add user to the `kvm` and `libvirt` groups (might be needed).
+```
+sudo usermod -aG kvm $(whoami)
+sudo usermod -aG libvirt $(whoami)
+sudo usermod -aG input $(whoami)
 ```
 
 ## Get BaseSystem
@@ -41,13 +42,14 @@ If you are not using macOS 14(Sonoma), try change `CPU` from `Haswell-noTSX` to 
 -netdev bridge,id=net0,br=virbr0
 -net nic,model=virtio-net-pci,netdev=net0
 ```
-Default config use bridge to reach your network via virbr0, `virt-manager` or `virsh` can create this net bridge easily. \
+Default config use bridge to reach your network via `virbr0`, `virt-manager` or `virsh` can create this net bridge easily. \
 If you don't want use bridge, replace these lines to 
 ```
 -netdev user,id=net0,hostfwd=tcp::2222-:22
 -device virtio-net-pci,netdev=net0,id=net0,mac=52:54:00:c9:18:27
 ```
-for a virtual network, means every request is forwarded by qemu itself. And in this case, only `hostfwd` param or use `iptables` can let you reach your VM with ssh etc..
+for a virtual network, means every request is forwarded by qemu itself. And in this case, only `hostfwd` param or use `iptables` can let you reach your VM with ssh etc..\
+If you got `failed to get mtu of bridge virbr0': No such device`, run `virt-manager` to bring this device up with ease.
 
 ## Fix your system
 ### Boot into UEFI shell
