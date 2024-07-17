@@ -37,6 +37,6 @@ args=(
 
 if [[ `cat /sys/module/kvm/parameters/ignore_msrs` = 'N' ]] ; then 
   echo 'Setting KVM env ...'
-  echo 1 > sudo tee /sys/module/kvm/parameters/ignore_msrs;
+  sudo bash -c "echo 1 > /sys/module/kvm/parameters/ignore_msrs";
 fi
 qemu-system-x86_64 "${args[@]}"
